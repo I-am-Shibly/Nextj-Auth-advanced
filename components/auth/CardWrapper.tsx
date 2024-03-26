@@ -20,7 +20,10 @@ export const CardWrapper = ({
   showSocial,
 }: CardWrapperProps) => {
   return (
-    <Card className="w-[400px] shadow-md">
+    <Card
+      className="w-[400px] shadow-md h-dvh overflow-auto"
+      style={{ scrollbarWidth: 'none' }}
+    >
       <CardHeader>
         <Header label={headerLabel} />
       </CardHeader>

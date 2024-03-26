@@ -132,7 +132,7 @@ function RegisterForm() {
           {success && <FormSuccess message={success} />}
           {error && <FormError message={error} />}
           <Button type="submit" className="w-full" disabled={isPending}>
-            Login
+            Create an account
           </Button>
         </form>
       </Form>
