@@ -31,15 +31,6 @@ function LoginForm() {
     defaultValues: { email: '', password: '' },
   });
 
-  useEffect(() => {
-    if (setSuccess || setError) {
-      setTimeout(() => {
-        setSuccess('');
-        setError('');
-      }, 5000);
-    }
-  });
-
   const submitHandler = (value: z.infer<typeof LoginSchema>) => {
     setSuccess('');
     setError('');
