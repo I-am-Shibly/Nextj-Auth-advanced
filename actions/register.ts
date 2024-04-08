@@ -3,7 +3,9 @@ import { z } from 'zod';
 import { RegisterSchema } from '@/schemas';
 import bcrypt from 'bcrypt';
 import { db } from '@/lib/db';
-import { getUserByEmail } from '@/data/user';
+import { getUserByEmail } from '@/data/getUser';
+import { generateToken } from '@/lib/generate-token';
+import { sendMail } from '@/lib/mail';
 
 export const register = async (value: z.infer<typeof RegisterSchema>) => {
   const isValid = RegisterSchema.safeParse(value);
@@ -30,5 +32,12 @@ export const register = async (value: z.infer<typeof RegisterSchema>) => {
     },
   });
 
-  return { successMsg: 'User has been registered successfully!' };
+  const verificationToken = await generateToken(email);
+
+  if (verificationToken) {
+    await sendMail(verificationToken.email, verificationToken.token);
+    return { successMsg: 'confirmation email sent!' };
+  } else {
+    return { errorMsg: 'something went wrong. please try again!' };
+  }
 };

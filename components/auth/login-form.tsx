@@ -7,7 +7,6 @@ import { useForm } from 'react-hook-form';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -19,7 +18,7 @@ import { Button } from '../ui/button';
 import { FormError } from '../form-error';
 import { FormSuccess } from '../form-success';
 import { login } from '@/actions/login';
-import { useEffect, useState, useTransition } from 'react';
+import { useState, useTransition } from 'react';
 
 function LoginForm() {
   const [isPending, startTransition] = useTransition();
